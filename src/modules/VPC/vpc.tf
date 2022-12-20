@@ -70,3 +70,22 @@ resource "aws_subnet" "MelissaPublicSubnet2" {
     }
 }
 
+#define subnet for Private Subnet 1 and 2
+resource "aws_subnet" "MelissaPrivateSubnet1" {
+  vpc_id            = aws_vpc.MelissaVPC.id
+  cidr_block        = var.private_subnet_cidrs[0]
+  availability_zone = var.availability_zones[0]
+  tags = {
+    Name    = "MelissaPrivateSubnet1"
+    Project = "Melissa Terraform Provision"
+  }
+}
+resource "aws_subnet" "MelissaPrivateSubnet2" {
+  vpc_id            = aws_vpc.MelissaVPC.id
+  cidr_block        = var.private_subnet_cidrs[1]
+  availability_zone = var.availability_zones[1]
+  tags = {
+    Name    = "MelissaPrivateSubnet2"
+    Project = "Melissa Terraform Provision"
+  }
+}
