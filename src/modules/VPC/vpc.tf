@@ -15,3 +15,19 @@ resource "aws_internet_gateway" "MelissaIGW" {
     Project = "Melissa Terraform Provision"
   }
 }
+
+#define elastic IP and NAT IPs
+resource "aws_eip" "MelissaNatGatewayEIP1" {
+    tags = {
+      Name = "MelissaNatGateway1"
+    Project = "Melissa Terraform Provision"    
+    }
+}
+resource "aws_nat_gateway" "MelissaNatGateway1" {
+    allocation_id = aws_eip.MelissaNatGatewayEIP1.id
+    subnet_id = aws_subnet.MelissaPublicSubnet1.id
+    tags = {
+      Name = "MelissaNatGateway1"
+          Project = "Melissa Terraform Provision"    
+    }
+}
