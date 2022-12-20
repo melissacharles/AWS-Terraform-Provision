@@ -89,3 +89,39 @@ resource "aws_subnet" "MelissaPrivateSubnet2" {
     Project = "Melissa Terraform Provision"
   }
 }
+
+#Add AWS Route Tables for Public Route table, Private RT 1 and Private RT 2
+resource "aws_route_table" "MelissaPublicRT" {
+  vpc_id = aws_vpc.MelissaVPC.id
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.MelissaIGW.id
+  }
+  tags = {
+    Name    = "MelissaPublicRT"
+    Project = "Melissa Terraform Provision"
+    }
+}
+resource "aws_route_table" "MelissaPrivateRT1" {
+  vpc_id = aws_vpc.MelissaVPC.id
+  route {
+    cidr_block     = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.MelissaNatGateway1.id
+  }
+  tags = {
+    Name    = "MelissaPrivateRT1"
+    Project = "Melissa Terraform Provision"
+    }
+}
+resource "aws_route_table" "MelissaPrivateRT2" {
+  vpc_id = aws_vpc.MelissaVPC.id
+  route {
+    cidr_block     = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.MelissaNatGateway2.id
+  }
+  tags = {
+    Name    = "MelissaPrivateRT2"
+    Project = "Melissa Terraform Provision"  
+    }
+}
+
