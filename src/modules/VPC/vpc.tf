@@ -42,3 +42,31 @@ resource "aws_subnet" "MelissaPublicSubnet1" {
         Project = "Melissa Terraform Provision"    
     }
 }
+
+#Define NatGatewayEIP2 and NatGateway2
+resource "aws_eip" "MelissaNatGatewayEIP2" {
+    tags = {
+      Name = "MelissaNatGatewayEIP2"
+      Project = "Melissa Terraform Provision"    
+    }
+}
+resource "aws_nat_gateway" "MelissaNatGateway2" {
+    allocation_id = aws_eip.MelissaNatGatewayEIP2.id
+    subnet_id = aws_subnet.MelissaPublicSubnet1.id
+    tags = {
+        Name = "MelissaNatGateway2"
+        Project = "Melissa Terraform Provision"    
+    } 
+}
+
+#define subnet for Public Subnet 2
+resource "aws_subnet" "MelissaPublicSubnet2" {
+    vpc_id = aws_vpc.MelissaVPC.id
+    cidr_block = var.public_subnet_cidrs[1]
+    availability_zone = var.availability_zones[1]
+    tags = {
+        Name = "MelissaPublicSubnet2"
+        Project = "Melissa Terraform Provision"    
+    }
+}
+
