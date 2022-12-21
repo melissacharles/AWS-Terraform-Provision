@@ -125,3 +125,20 @@ resource "aws_route_table" "MelissaPrivateRT2" {
     }
 }
 
+#Add route table associations to public and private subnets
+resource "aws_route_table_association" "MelissaPublicRTassociation1" {
+  subnet_id      = aws_subnet.MelissaPublicSubnet1.id
+  route_table_id = aws_route_table.MelissaPublicRT.id
+}
+resource "aws_route_table_association" "MelissaPublicRTassociation2" {
+  subnet_id      = aws_subnet.MelissaPublicSubnet2.id
+  route_table_id = aws_route_table.MelissaPublicRT.id
+}
+resource "aws_route_table_association" "MelissaPrivateRTassociation1" {
+  subnet_id      = aws_subnet.MelissaPrivateSubnet1.id
+  route_table_id = aws_route_table.MelissaPrivateRT1.id
+}
+resource "aws_route_table_association" "MelissaPrivateRTassociation2" {
+  subnet_id      = aws_subnet.MelissaPrivateSubnet2.id
+  route_table_id = aws_route_table.MelissaPrivateRT2.id
+}
