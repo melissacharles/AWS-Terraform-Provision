@@ -10,7 +10,7 @@ resource "aws_db_subnet_group" "MelissaDBSubnetGroup" {
    }
 }
 
-resource "aws_security_group" "MelissaDBSubnetGroup" {
+resource "aws_security_group" "MelissaDBSecurityGroup" {
   name = "melissa-db-security-group"
   vpc_id = var.melissa_vpc_id
 
@@ -43,7 +43,7 @@ resource "aws_db_instance" "melissaRDS" {
     password = var.db_user_password
     skip_final_snapshot = true 
     tags = {
-      Name = "MelissaRDS"
+      Name = "melissaRDS"
       Project = "Melissa Terraform Provision"    
     }
 }

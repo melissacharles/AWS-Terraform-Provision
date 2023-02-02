@@ -1,9 +1,9 @@
-output "cc_vpc_id" {
+output "melissa_vpc_id" {
   description = "VPC Id"
   value       = aws_vpc.MelissaVPC.id
 }
 
-output "cc_public_subnets" {
+output "melissa_public_subnets" {
   description = "Will be used by Web Server Module to set subnet_ids"
   value = [
     aws_subnet.MelissaPublicSubnet1,
@@ -11,7 +11,7 @@ output "cc_public_subnets" {
   ]
 }
 
-output "cc_private_subnets" {
+output "melissa_private_subnets" {
   description = "Will be used by RDS Module to set subnet_ids"
   value = [
     aws_subnet.MelissaPrivateSubnet1,

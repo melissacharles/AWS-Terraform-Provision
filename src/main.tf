@@ -41,8 +41,8 @@ module "db-infra" {
   source = "./modules/db"
 
 #RDS Input Vars
-melissa_vpc_id = module.vpc-infra.cc_vpc_id
-melissa_private_subnets = module.vpc-infra.cc_private_subnets
+melissa_vpc_id = module.vpc-infra.melissa_vpc_id
+melissa_private_subnets = module.vpc-infra.melissa_private_subnets
 melissa_private_subnet_cidrs = local.private_subnet_cidrs
 
 db_az = local.availability_zones[0]

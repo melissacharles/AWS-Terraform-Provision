@@ -4,12 +4,12 @@ variable "melissa_private_subnets" {
 }
 
 variable "melissa_private_subnet_cidrs" {
-  desciption = "Private Subnet CIDRs for RDS DB"
+  description = "Private Subnet CIDRs for RDS DB"
   type = list(any)
 }
 
 variable "melissa_vpc_id" {
-  description = "VPC ID"
+  description = "VPC Id"
   type = string
   validation {
     condition = length(var.melissa_vpc_id) > 4 && substr(var.melissa_vpc_id, 0, 4) == "vpc-"
@@ -21,7 +21,7 @@ variable "db_az" {
   description = "DB Availability Zone"
   type = string
   validation {
-    condition = can(regex("^[a-zA-Z0-9\\-]+$", var.db.az))
+    condition = can(regex("^[a-zA-Z0-9\\-]+$", var.db_az))
     error_message = "DB Availibility Zone must be empty"
   }
 }
