@@ -28,3 +28,22 @@ resource "aws_security_group" "MelissaDBSubnetGroup" {
     Project = "Melissa Terraform Provision"
   }
 }
+
+resource "aws_db_instance" "melissaRDS" {
+    availability_zone = var.db_az
+    db_subnet_group_name = aws_db_subnet_group.MelissaDBSubnetGroup.name
+    vpc_security_group_ids = [aws_security_group.MelissaDBSecurityGroup.id]
+    allocated_storage = 20
+    storage_type = "standard"
+    engine = "postgres"
+    engine_version = "12"
+    instance_class = "db.t2.micro"
+    name = var.db_name
+    username = var.db_user_name
+    password = var.db_user_password
+    skip_final_snapshot = true 
+    tags = {
+      Name = "MelissaRDS"
+      Project = "Melissa Terraform Provision"    
+    }
+}
