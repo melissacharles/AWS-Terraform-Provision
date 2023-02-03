@@ -1,7 +1,5 @@
 
 terraform {
-# Run init/plan/apply with "backend" commented-out (uses local backend) to provision Resources (Bucket, Table)
-# Then uncomment "backend" and run command init, apply after resources have been created (this uses AWS)
     backend "s3" {
     bucket         = "cc-tf-state-backend"
     key            = "tf-infra/terraform.tfstate"
