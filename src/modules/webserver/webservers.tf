@@ -35,3 +35,15 @@ resource "aws_lb" "MelissaLoadBalancer" {
       Project = "Melissa Terraform Provision"
     }
 }
+
+resource "aws_lb_listener" "MelissaLBListerner" {
+    load_balancer_arn = aws_lb.MelissaLoadBalancer.arn
+
+    port = 80
+    protocol = "HTTP"
+
+    default_action {
+      target_group_arn = aws_lb_target_group.ccTargetGroup.id
+      type = "forward"
+    }
+}
