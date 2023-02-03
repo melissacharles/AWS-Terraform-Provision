@@ -48,3 +48,11 @@ db_name = "MelissaDatabaseInstance"
 db_user_name = var.db_user_name
 db_user_password = var.db_user_password
 }
+
+module "webserver-infra" {
+  source = "./modules/webserver"
+
+  # Web Server (EC2 Instance) Input Vars
+  melissa_vpc_id = module.vpc-infra.melissa_vpc_id
+  melissa_public_subnets = module.vpc-infra.melissa_public_subnets
+}
