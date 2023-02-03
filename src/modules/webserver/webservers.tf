@@ -81,3 +81,41 @@ resource "aws_lb_target_group_attachment" "webserver2" {
   target_id = aws_instance.webserver2.id
   port = 80
 }
+
+resource "aws_instance" "webserver1" {
+  ami = local.ami.vpc_id
+  instance_type = local.instance_type
+  key_name = local.key_name
+  subnet_id = var.melissa_public_subnets[0].id
+  security_groups = [aws_security_group.MelissaWebserverSecurityGroup.id]
+  associate_public_ip_address = true
+  
+  user_data = <<-EOF
+                #!/bin/bash -xe
+                sudo su
+                yum update -y
+                yum install -y httpd
+                echo "<h1>Go DevOps!</h1>server: MelissaWebserver1" > /var/www/html/index.html
+                echo "healthy" > /var/www/html/hc.html
+                services httpd start
+                EOF
+}
+
+resource "aws_instance" "webserver2" {
+  ami = local.ami.vpc_id
+  instance_type = local.instance_type
+  key_name = local.key_name
+  subnet_id = var.melissa_public_subnets[0].id
+  security_groups = [aws_security_group.MelissaWebserverSecurityGroup.id]
+  associate_public_ip_address = true
+  
+  user_data = <<-EOF
+                #!/bin/bash -xe
+                sudo su
+                yum update -y
+                yum install -y httpd
+                echo "<h1>Go DevOps!</h1>server: MelissaWebserver2" > /var/www/html/index.html
+                echo "healthy" > /var/www/html/hc.html
+                services httpd start
+                EOF
+}
