@@ -25,3 +25,13 @@ resource "aws_security_group" "MelissaWebserverSecurityGroup" {
   }
 }
 
+resource "aws_lb" "MelissaLoadBalancer" {
+    name = "web-app-lb"
+    load_balancer_type = "application"
+    subnets = [var.melissa_public_subnets[0].id, var.cc_public_subnets[1].id]
+    security_groups = [aws_security_group.MelissaWebserverSecurityGroup.id]
+    tags = {
+      Name = "MelissaLoadBalancer"
+      Project = "Melissa Terraform Provision"
+    }
+}
