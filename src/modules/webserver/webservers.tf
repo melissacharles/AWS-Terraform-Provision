@@ -47,3 +47,25 @@ resource "aws_lb_listener" "MelissaLBListerner" {
       type = "forward"
     }
 }
+
+resource "aws_lb_target_group" "MelissaTargetGroup" {
+  name = "terra-target-group"
+  port = 80
+  protocol = "HTTP"
+  vpc_id = var.melissa_vpc_id
+
+  health_check {
+    path = "/"
+    protocol = "HTTP"
+    matcher = "200"
+    interval = 15
+    timeout = 3
+    healthy_threshold = 2
+    unhealthy_threshold = 2
+  }
+
+  tags = {
+    Name = "MelissaTargetGroup"
+    Project = "Melissa Terraform Provision"
+  }
+}
