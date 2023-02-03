@@ -69,3 +69,15 @@ resource "aws_lb_target_group" "MelissaTargetGroup" {
     Project = "Melissa Terraform Provision"
   }
 }
+
+resource "aws_lb_target_group_attachment" "webserver1" {
+  target_group_arn = aws_lb_target_group.MelissaTargetGroup.arn
+  target_id = aws_instance.webserver1.id
+  port = 80
+}
+
+resource "aws_lb_target_group_attachment" "webserver2" {
+  target_group_arn = aws_lb_target_group.MelissaTargetGroup.arn
+  target_id = aws_instance.webserver2.id
+  port = 80
+}
