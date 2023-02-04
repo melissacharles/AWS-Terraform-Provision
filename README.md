@@ -1,4 +1,4 @@
- <h1 align="center">AWS Infrastructure using Terraform</h1> 
+ <h1 align="center">Provision AWS Infrastructure using Terraform</h1> 
 
 ![Terraform](https://miro.medium.com/max/1400/1*uROgj7pJBK95JibA-PKDHA.webp)
 
